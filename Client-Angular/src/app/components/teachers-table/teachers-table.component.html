@@ -1,0 +1,29 @@
+<table class="table table-striped border">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Email</th>
+			<th scope="col">Oficina</th>
+			<th scope="col">Facultad</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (teacher of teachers; track teacher) {
+			<tr>
+				<th scope="row">{{ teacher.id }}</th>
+				<td>{{ teacher.name }}</td>
+				<td>{{ teacher.lastName }}</td>
+				<td>{{ teacher.email }}</td>
+				<td>{{ teacher.office }}</td>
+				<td>
+					<dsb-badge-atom
+						[text]="teacher.faculty"
+						[type]="facultyMap[teacher.faculty]" >
+					</dsb-badge-atom>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

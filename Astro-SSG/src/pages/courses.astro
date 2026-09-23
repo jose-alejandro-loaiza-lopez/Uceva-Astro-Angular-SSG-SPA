@@ -1,0 +1,47 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import { COURSES } from "@data/Courses";
+import type { BadgeType } from "@interfaces/Badge";
+import type { Course, CourseLevel } from "@interfaces/Courses";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const courses: Course[] = COURSES;
+
+const levelMap: Record<CourseLevel, BadgeType> = {
+  'Basico' : 'success',
+  'Intermedio': 'warning',
+  'Avanzado': 'danger',
+}
+
+---
+<MainLayout>
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Código</th>
+        <th scope="col">Semestre</th>
+        <th scope="col">Créditos</th>
+        <th scope="col">Nivel</th>
+      </tr>
+    </thead>
+    <tbody>
+      {courses.map((course) => (
+        <tr>
+          <th scope="row">{course.id}</th>
+          <td>{course.name}</td>
+          <td>{course.code}</td>
+          <td>{course.semester}</td>
+          <td>{course.credits}</td>
+          <td>
+            <Badge
+              text={course.level}
+              type={levelMap[course.level]}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</MainLayout>

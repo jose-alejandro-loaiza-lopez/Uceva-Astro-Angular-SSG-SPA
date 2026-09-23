@@ -1,0 +1,49 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import { TEACHERS } from "@data/Teachers";
+import type { BadgeType } from "@interfaces/Badge";
+import type { Teacher, TeacherFaculty } from "@interfaces/Teachers";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const teachers: Teacher[] = TEACHERS;
+
+const facultyMap: Record<TeacherFaculty, BadgeType> = {
+  'Ingenieria': 'success',
+  'Salud': 'danger',
+  'CienciasEconomicas': 'warning',
+  'Educacion': 'primary',
+  'Humanidades': 'secondary'
+}
+
+---
+<MainLayout>
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Email</th>
+        <th scope="col">Oficina</th>
+        <th scope="col">Facultad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {teachers.map((teacher) => (
+        <tr>
+          <th scope="row">{teacher.id}</th>
+          <td>{teacher.name}</td>
+          <td>{teacher.lastName}</td>
+          <td>{teacher.email}</td>
+          <td>{teacher.office}</td>
+          <td>
+            <Badge
+              text={teacher.faculty}
+              type={facultyMap[teacher.faculty]}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</MainLayout>

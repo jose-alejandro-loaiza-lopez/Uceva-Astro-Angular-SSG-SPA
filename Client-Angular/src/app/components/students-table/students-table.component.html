@@ -1,0 +1,29 @@
+<table class="table table-striped border">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Código</th>
+			<th scope="col">Semestre</th>
+			<th scope="col">Programa</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (student of students; track student) {
+			<tr>
+				<th scope="row">{{ student.id }}</th>
+				<td>{{ student.name }}</td>
+				<td>{{ student.lastName }}</td>
+				<td>{{ student.code }}</td>
+				<td>{{ student.semester }}</td>
+				<td>
+					<dsb-badge-atom
+						[text]="student.program"
+						[type]="programMap[student.program]" >
+					</dsb-badge-atom>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

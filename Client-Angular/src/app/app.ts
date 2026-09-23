@@ -46,6 +46,9 @@ export class App {
    *     { text: 'Usuarios', url: '/users' },
    *     { text: 'Productos', url: '/products' },
    *     { text: 'Fecha', url: '/date' },
+   *     { text: 'Estudiantes', url: '/students' },
+   *     { text: 'Cursos', url: '/courses' },
+   *     { text: 'Docentes', url: '/teachers' },
    *   ]
    * }
    * ```
@@ -60,6 +63,9 @@ export class App {
       { text: 'Usuarios', url: '/users' },
       { text: 'Productos', url: '/products' },
       { text: 'Fecha', url: '/date' },
+      { text: 'Estudiantes', url: '/students' },
+      { text: 'Cursos', url: '/courses' },
+      { text: 'Docentes', url: '/teachers' },
     ]
   };
 }

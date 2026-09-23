@@ -1,0 +1,49 @@
+---
+import Badge from "@components/shared/Badge.astro";
+import { STUDENTS } from "@data/Students";
+import type { BadgeType } from "@interfaces/Badge";
+import type { Student, StudentProgram } from "@interfaces/Students";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const students: Student[] = STUDENTS
+
+const programMap: Record<StudentProgram, BadgeType> = {
+    'Sistemas' : 'success',
+    'Electronica': 'primary',
+    'Biomedica': 'warning',
+    'Industrial': 'danger',
+    'Ambiental': 'secondary'
+}
+
+---
+<MainLayout>
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Código</th>
+        <th scope="col">Semestre</th>
+        <th scope="col">Programa</th>
+      </tr>
+    </thead>
+    <tbody>
+      {students.map((student) => (
+        <tr>
+          <th scope="row">{student.id}</th>
+          <td>{student.name}</td>
+          <td>{student.lastName}</td>
+          <td>{student.code}</td>
+          <td>{student.semester}</td>
+          <td>
+            <Badge
+              text={student.program}
+              type={programMap[student.program]}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</MainLayout>
